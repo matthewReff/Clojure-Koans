@@ -41,4 +41,8 @@
 
   "All together now!"
   (= "Test Testerson, 123 Test Lane, Testerville, TX"
-     (___ ["Test" "Testerson"] test-address)))
+     ((fn [[first last] value-map]
+     (let [{:keys [street-address city state]} value-map]
+     (clojure.string/join ", " (cons (str first " " last) [street-address city state]))))
+     ["Test" "Testerson"] test-address))
+  )
